@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Users</title>
+      {% load staticfiles %}
+
+  </head>
+  <body>
+    <h1>Posts by {{ name }}</h1>
+    <h1>Count: {{ count }}</h1>
+    <div id="">
+      {% for fav in favs%}
+      <p>{{fav.user.name }} {{ fav.text }}</p>
+      {% endfor %}
+    </div>
+
+    <form class="" action="/dashboard" method="post">
+      {% csrf_token %}
+      <input type="submit" name="" value="dashboard">
+    </form>
+
+    <form class="" action="/logout" method="post">
+      {% csrf_token %}
+      <input type="submit" name="" value="log out">
+    </form>
+  </body>
+</html>

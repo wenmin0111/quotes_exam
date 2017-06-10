@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Quotes</title>
+      {% load staticfiles %}
+
+  </head>
+  <body>
+    <form class="" action="/logout" method="post">
+      {% csrf_token %}
+      <input type="submit" name="" value="log out">
+    </form>
+    <h1>Welcome : {{user.name}}</h1>
+    <div class='lr'>
+      <h2>Quotable Quotes</h2>
+
+      <div class="a">
+        {% for quote in quotes %}
+
+          <div class='postdata'>
+              <p>{{quote.text}}</p>
+            <p>Posted by {{quote.user.alios}}</p>
+            <form action="add_list/{{quote.id}}" method="post">
+              {% csrf_token %}
+              <input type="submit" name="add_my_list" value="Add to My List">
+            </form>
+          </div>
+          {% endfor %}
+      </div>
+
+      </div>
+    </div>
+    <div class='lr'>
+      <h2>Your Favorites</h2>
+      <div class="a">
+        {% for quote in favorites %}
+
+          <div class='favorites'>
+            <p>{{quote.text}}</p>
+            <p>Posted by <a href="/users/{{ quote.user.id }}">{{quote.user.alios}}</a></p>
+            <form action="remove/{{quote.id}}" method="post">
+              {% csrf_token %}
+                <button type="submit" name="button">Remove quote from my list</button>
+            </form>
+          </div>
+          {% endfor %}
+      </div>
+    </div>
+
+    <div class="">
+      <br>
+      <br>
+      <h2>Contribute a Quote: </h2>
+      <form action="/quotes" method="post">
+        {% csrf_token %}
+          <label for="quoted_by">Quoted by: </label>
+          <input type="text" id='quoted_by' name="quoted_by">
+          <label for="message">Messages: </label>
+          <textarea type="text" id="message" name="messages"></textarea>
+          <button type="submit" name="button">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
